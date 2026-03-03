@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(my_behavior_tree_project)
+project(ros2_behavior_tree_demo)
 
 # 找到ament_cmake包
 find_package(ament_cmake REQUIRED)
@@ -22,9 +22,9 @@ include_directories(
 
 # 添加可执行文件
 add_executable(main 
-    /home/zhoumaiqi/my_tree.ws/src/my_behavior_tree_project/main.cpp
-    /home/zhoumaiqi/my_tree.ws/src/my_behavior_tree_project/nodes/rotate_chassis.cpp
-    /home/zhoumaiqi/my_tree.ws/src/my_behavior_tree_project/nodes/is_game_started.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/nodes/rotate_chassis.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/nodes/is_game_started.cpp
 )
 
 # 链接库
@@ -41,9 +41,9 @@ ament_target_dependencies(main
   std_msgs)
 
 # 添加共享库
-add_library(my_behavior_tree_nodes SHARED
-  /home/zhoumaiqi/my_tree.ws/src/my_behavior_tree_project/nodes/rotate_chassis.cpp
-  /home/zhoumaiqi/my_tree.ws/src/my_behavior_tree_project/nodes/is_game_started.cpp
+add_library(behavior_tree_nodes SHARED
+  ${CMAKE_CURRENT_SOURCE_DIR}/nodes/rotate_chassis.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/nodes/is_game_started.cpp
 )
 
 # 链接库

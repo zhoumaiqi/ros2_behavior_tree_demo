@@ -1,4 +1,52 @@
-## 行为树
-1.在Groot2中定义需要的节点并构建behavior tree，在文件中定义节点的具体执行方式
+## ROS 2 行为树演示（behavior_tree_demo）
 
-2.将“裁判系统”与behavior tree建立联系，sub裁判系统发布的topic，并将其转化消息类型,进而“写在”行为树的blackboard上。以供行为树读取数据
+本仓库包含一个简单的 **ROS 2** 包，展示如何使用 [BehaviorTree.CPP](https://github.com/BehaviorTree/BehaviorTree.CPP) 库来
+构建和执行行为树。项目基于 `ament_cmake`，原名 `my_behavior_tree_project`。
+
+建议将仓库名改为更具描述性的 `ros2_behavior_tree_demo` 或 `behavior_tree_ros2_example`
+以便读者一目了然。
+
+### 项目结构
+
+```
+src/my_behavior_tree_project/
+	├── include/              # 自定义节点头文件
+	│   ├── rotate_chassis.h
+	│   └── is_game_started.h
+	├── nodes/                # 节点实现与注册
+	│   ├── rotate_chassis.cpp
+	│   └── is_game_started.cpp
+	├── trees/                # 行为树 XML 定义
+	│   └── my_behavior_tree.xml
+	└── main.cpp              # 入口：加载树并执行
+```
+
+### 功能概览
+
+1. **IsGameStarted**  - 条件节点，从黑板读取 `game_started` 并返回成功/失败。
+2. **RotateChassis**  - 同步动作节点，从黑板读取 `angle` 并打印调试信息。
+3. 行为树在 XML 中定义：先检查游戏是否开始，然后执行旋转操作。
+
+### 构建与运行
+
+在工作区根目录下执行：
+
+```powershell
+colcon build --packages-select my_behavior_tree_project
+```
+
+然后在同一环境中运行：
+
+```powershell
+ros2 run my_behavior_tree_project main
+```
+
+（此程序不依赖 ROS 节点，仅用于演示行为树执行过程。）
+
+### 注意
+
+- 若仓库重命名，需要同时更新 `package.xml` 和 `CMakeLists.txt` 中的 `project()` 名称。
+- 黑板变量在 `main.cpp` 中硬编码为 `game_started=true` 和 `rotation_angle=90.0`，供测试使用。
+
+欢迎将此示例扩展为实际机器人控制或比赛逻辑。
+

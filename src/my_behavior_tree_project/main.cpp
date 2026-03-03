@@ -13,6 +13,7 @@ int main()
     factory.registerNodeType<RotateChassis>("RotateChassis");
 
     // 从XML文件加载行为树
+    // 直接读取树定义文件，此处路径相对于工作目录
     std::ifstream xml_file("src/my_behavior_tree_project/trees/my_behavior_tree.xml");
     if (!xml_file)
     {
