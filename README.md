@@ -1,10 +1,9 @@
 ## ROS 2 行为树演示（behavior_tree_demo）
 
 本仓库包含一个简单的 **ROS 2** 包，展示如何使用 [BehaviorTree.CPP](https://github.com/BehaviorTree/BehaviorTree.CPP) 库来
-构建和执行行为树。项目基于 `ament_cmake`，原名 `my_behavior_tree_project`。
+构建和执行行为树。项目基于 `ament_cmake`，包名和源码目录现为 `ros2_behavior_tree_demo`。
 
-建议将仓库名改为更具描述性的 `ros2_behavior_tree_demo` 或 `behavior_tree_ros2_example`
-以便读者一目了然。
+仓库已经采用了描述性的 `ros2_behavior_tree_demo` 名称，包含相应的源码目录和包配置。
 
 ### 项目结构
 
@@ -32,7 +31,7 @@ src/my_behavior_tree_project/
 在工作区根目录下执行：
 
 ```powershell
-colcon build --packages-select my_behavior_tree_project
+colcon build --packages-select ros2_behavior_tree_demo
 ```
 
 然后在同一环境中运行：
@@ -45,8 +44,8 @@ ros2 run my_behavior_tree_project main
 
 ### 注意
 
-- 若仓库重命名，需要同时更新 `package.xml` 和 `CMakeLists.txt` 中的 `project()` 名称。
-- 黑板变量在 `main.cpp` 中硬编码为 `game_started=true` 和 `rotation_angle=90.0`，供测试使用。
+• 若将包名在未来修改，请记得同时更新 `package.xml` 和 `CMakeLists.txt` 中的 `<name>` / `project()` 名称。
+• 黑板变量在 `main.cpp` 中硬编码为 `game_started=true` 和 `rotation_angle=90.0`，用于演示。
 
 欢迎将此示例扩展为实际机器人控制或比赛逻辑。
 
