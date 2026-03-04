@@ -1,1 +1,0 @@
-/home/zhoumaiqi/my_tree.ws/build/behaviortree_cpp/ament_cmake_environment_hooks/local_setup.sh
